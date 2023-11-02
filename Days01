@@ -1,0 +1,59 @@
+/*******   Minimum distance between two numbers *********/
+
+You are given an array a, of n elements. Find the minimum index based distance 
+between two distinct elements of the array, x and y. Return -1, if either x or y
+does not exist in the array.
+
+Example 1:
+
+Input:
+N = 4
+A[] = {1,2,3,2}
+x = 1, y = 2
+Output: 1
+Explanation: x = 1 and y = 2. There are
+two distances between x and y, which are
+1 and 3 out of which the least is 1.
+
+Example 2:
+
+Input:
+N = 7
+A[] = {86,39,90,67,84,66,62}
+x = 42, y = 12
+Output: -1
+Explanation: x = 42 and y = 12. We return
+-1 as x and y don't exist in the array.
+
+
+
+
+/**************SOLUTIONS in C++ *************/ 
+
+
+int minDist(int a[], int n, int x, int y) {
+         vector<int> pr_x, pr_y;
+        int minDistance = INT_MAX;
+        for (int i = 0; i < n; i++) {
+            if (a[i] == x) {
+                pr_x.push_back(i);
+            } else if (a[i] == y) {
+                pr_y.push_back(i);
+            }
+        }
+        if (pr_x.empty() || pr_y.empty()) {
+            return -1;
+        }
+        int i = 0;
+        int j = 0;
+        while (i < pr_x.size() && j < pr_y.size()) {
+            int dist = abs(pr_x[i] - pr_y[j]);
+            minDistance = min(minDistance, dist);
+            if (pr_x[i] < pr_y[j]) {
+                i++;
+            } else {
+                j++;
+            }
+        }
+        return minDistance;
+    }
