@@ -1,0 +1,16 @@
+/***************Solution in c++ ******************///
+class Solution {
+public:
+    int getLastMoment(int n, vector<int>& left, vector<int>& right) {
+        int lastmoment = 0;
+        for(int i=0; i<left.size(); i++)
+        {
+            lastmoment = max(lastmoment,left[i]);
+        }
+        for(int i=0; i<right.size(); i++)
+        {
+            lastmoment = max(lastmoment,n-right[i]);
+        }
+        return lastmoment;
+    }
+};
