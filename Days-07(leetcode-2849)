@@ -1,0 +1,23 @@
+/*********  2849. Determine if a Cell Is Reachable at a Given Time *************/
+
+
+/*----------------------------SOLUTTION IN C++--------------------/
+
+class Solution {
+public:
+    bool isReachableAtTime(int sx, int sy, int fx, int fy, int t) {
+        int xdiff = abs(sx-fx);
+        int ydiff = abs(sy-fy);
+        int diagdist = min(xdiff,ydiff);
+        
+        xdiff = xdiff - diagdist;
+        ydiff = ydiff - diagdist;
+        
+        diagdist = diagdist + xdiff + ydiff;
+        if(diagdist == 0)
+        {
+            return t!=1;
+        }
+        return (diagdist <= t);
+    }
+};
