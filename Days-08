@@ -1,0 +1,48 @@
+/**********Add one to a number represented as Linked List*****************/
+
+
+/---------------------Approach*******************/
+
+step No:01   reverse the linked list
+step No:02   Take a carry = 1, and add to it, do the same step till found null ptr
+step No:03   again reverse the linked list
+
+
+/**** SOLUTION IN C++***/
+Node* reverse(Node* head) {
+    Node* curr = head;
+    Node* prev = NULL;
+    while (curr != NULL) {
+        Node* ford = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = ford;
+    }
+    return prev;
+}
+Node *addOne(Node *head)
+{
+    if (head == NULL) {
+        return NULL;
+    }
+
+    Node* p = reverse(head);
+    head = p;
+    int carry = 1;
+
+    while (p != NULL && carry) {
+        int sum = p->data + carry;
+        p->data = sum % 10;
+        carry = sum / 10;
+
+        if (p->next == NULL && carry) {
+            p->next = new Node(carry);
+            break;
+        }
+
+        p = p->next;
+    }
+
+    head = reverse(head);
+    return head;
+}
