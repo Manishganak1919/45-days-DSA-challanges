@@ -1,0 +1,38 @@
+/**question link***/
+https://www.codechef.com/problems/MAXIMALEXP
+
+
+#include <bits/stdc++.h>
+typedef long long int ll;
+#define mod 1000000007
+using namespace std;
+
+void helper()
+{
+    ll n, k;
+    cin >> n >> k;
+    ll ans1 = (n % k + k + 1) / 2; /** +1 due to taking ceil value **/
+    ll ans2 = (n % k) / 2;
+
+    if (ans1 < k)
+    {
+        ll value1 = ans1 * (n - ans1);
+        ll value2 = ans2 * (n - ans2);
+        if (value1 > value2)
+        {
+            ans2 = ans1;
+        }
+    }
+    cout << ans2 << endl;
+}
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        helper();
+    }
+    return 0;
+}
